@@ -37,6 +37,14 @@ def main():
                 return
         
         updatable.update(dt)
+        
+        for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    log_event("asteroid_shot")
+                    asteroid.split()
+                    pygame.sprite.Sprite.kill(shot)
+
         for asteroid in asteroids:
             if player.collides_with(asteroid):
                 log_event("player_hit")
